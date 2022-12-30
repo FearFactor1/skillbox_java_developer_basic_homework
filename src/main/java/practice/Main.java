@@ -37,7 +37,8 @@ public class Main {
                 if (Integer.parseInt(tpInd[1]) > todoList.getTodos().size()) {
                     System.out.println("Дело с таким номером не существует");
                 } else {
-                    System.out.println("Дело " + '"' + todoList.getTodos().get(Integer.parseInt(tpInd[1])) + '"' + " удалено");
+                    System.out.println("Дело " + '"' + todoList.getTodos().get(Integer.parseInt(tpInd[1])) + '"' +
+                            " удалено");
                     todoList.delete(Integer.parseInt(tpInd[1]));
                 }
             }
