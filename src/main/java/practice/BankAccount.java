@@ -7,8 +7,9 @@ public class BankAccount {
   protected ArrayList<Double> check = new ArrayList<>();
 
   public double getAmount() {
-    for (Double sum : check)
+    for (Double sum : check) {
       return sum;
+    }
     return 0;
   }
 
