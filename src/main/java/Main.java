@@ -12,8 +12,6 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
-import static org.hibernate.id.PersistentIdentifierGenerator.PK;
-
 public class Main {
 
     public static void main(String[] args) {
