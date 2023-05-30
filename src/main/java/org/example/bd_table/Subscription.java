@@ -1,10 +1,15 @@
 package org.example.bd_table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "Subscriptions")
 public class Subscription implements Serializable {
 
@@ -12,43 +17,11 @@ public class Subscription implements Serializable {
     private SubscriptionKey id;
 
     @Column(name = "student_id", insertable = false, updatable = false)
-    private int studentId;
+    private Long studentId;
 
     @Column(name = "course_id", insertable = false, updatable = false)
-    private int courseId;
+    private Long courseId;
 
     @Column(name = "subscription_date")
     private Date subscriptionDate;
-
-    public SubscriptionKey getId() {
-        return id;
-    }
-
-    public void setId(SubscriptionKey id) {
-        this.id = id;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
-    public Date getSubscriptionDate() {
-        return subscriptionDate;
-    }
-
-    public void setSubscriptionDate(Date subscriptionDate) {
-        this.subscriptionDate = subscriptionDate;
-    }
 }

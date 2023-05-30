@@ -12,7 +12,10 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+
 public class Main {
+
+    static MapArray mapArray = new MapArray();
 
     public static void main(String[] args) {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -27,20 +30,19 @@ public class Main {
         Root<PurchaseList> root = query.from(PurchaseList.class);
         query.select(root);
         List<PurchaseList> purchaseList = session.createQuery(query).getResultList();
-        System.out.println(purchaseList);
 
         Transaction transaction = session.beginTransaction();
         for (PurchaseList purchase : purchaseList) {
             LinkedPurchaseList linkedPurchase = new LinkedPurchaseList();
-            int studentId = purchase.getStudent().getId();
+            Long id = purchase.getId();
+            linkedPurchase.setId(id);
+            Long studentId = purchase.getStudent().getId();
             linkedPurchase.setStudentId(studentId);
-            int courseId = purchase.getCourse().getId();
+            long courseId = purchase.getCourse().getId();
             linkedPurchase.setCourseId(courseId);
-            linkedPurchase.setId(new LinkedPurchaseListKey(studentId, courseId));
-            System.out.println(linkedPurchase);
+            session.save(linkedPurchase);
         }
         transaction.commit();
-
         session.close();
         sessionFactory.close();
     }

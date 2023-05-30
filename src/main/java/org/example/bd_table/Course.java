@@ -1,17 +1,23 @@
 package org.example.bd_table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "Courses")
 public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
+    @Column(length=500)
     private String name;
 
     private int duration;
@@ -20,18 +26,11 @@ public class Course implements Serializable {
     @Column(columnDefinition = "enum ('DESIGN', 'PROGRAMMING', 'MARKETING', 'MANAGEMENT', 'BUSINESS')")
     private CourseType type;
 
+    @Column(length=500)
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Teacher teacher;
-
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
 
     @Column(name = "students_count")
     private Integer studentsCount;
@@ -52,84 +51,4 @@ public class Course implements Serializable {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     List<Subscription> subscriptions;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public CourseType getType() {
-        return type;
-    }
-
-    public void setType(CourseType type) {
-        this.type = type;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getStudentsCount() {
-        return studentsCount;
-    }
-
-    public void setStudentsCount(int studentsCount) {
-        this.studentsCount = studentsCount;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public float getPricePerHour() {
-        return pricePerHour;
-    }
-
-    public void setPricePerHour(float pricePerHour) {
-        this.pricePerHour = pricePerHour;
-    }
-
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
-    }
-
-    public List<Subscription> getSubscriptions() {
-        return subscriptions;
-    }
-
-    private void setSubscriptions(List<Subscription> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
 }

@@ -1,42 +1,24 @@
 package org.example.bd_table;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "LinkedPurchaseList")
 public class LinkedPurchaseList implements Serializable {
 
-    @EmbeddedId
-    private LinkedPurchaseListKey id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Column(name = "student_id", insertable = false, updatable = false)
-    private int studentId;
+    @Column(name = "student_id", insertable = true, updatable = false)
+    private Long studentId;
 
-    @Column(name = "course_id", insertable = false, updatable = false)
-    private int courseId;
-
-    public LinkedPurchaseListKey getId() {
-        return id;
-    }
-
-    public void setId(LinkedPurchaseListKey id) {
-        this.id = id;
-    }
-
-    public int getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(int studentId) {
-        this.studentId = studentId;
-    }
-
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
+    @Column(name = "course_id", insertable = true, updatable = false)
+    private Long courseId;
 }
