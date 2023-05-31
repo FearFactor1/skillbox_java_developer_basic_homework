@@ -41,11 +41,9 @@ public class Course implements Serializable {
     private float pricePerHour;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "Subscriptions",
-    joinColumns = {@JoinColumn(name = "course_id")},
-    inverseJoinColumns = {@JoinColumn(name = "student_id")}
-    )
-
+    @JoinTable(name = "subscriptions",
+            joinColumns = {@JoinColumn(name = "course_id")},
+            inverseJoinColumns = {@JoinColumn(name = "student_id")})
     private List<Student> students;
 
     @OneToMany(cascade = CascadeType.ALL)

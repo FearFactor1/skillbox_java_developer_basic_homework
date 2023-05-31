@@ -15,8 +15,6 @@ import java.util.List;
 
 public class Main {
 
-    static MapArray mapArray = new MapArray();
-
     public static void main(String[] args) {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .configure("hibernate.cfg.xml").build();
